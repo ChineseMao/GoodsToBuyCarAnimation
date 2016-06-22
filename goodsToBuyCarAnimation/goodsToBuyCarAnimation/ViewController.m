@@ -93,6 +93,7 @@
 
 -(void)groupAnimation
 {
+    //防止动作期间多次点击；
     _Button.userInteractionEnabled = NO;
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     animation.path = _path.CGPath;
@@ -120,6 +121,7 @@
     groups.fillMode=kCAFillModeForwards;
     groups.delegate = self;
     [_layer addAnimation:groups forKey:@"group"];
+    
 }
 
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
