@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import <Masonry.h>
+#import "myView.h"
+#import "BKAnimationGoods.h"
 
 //获取屏幕 宽度、高度
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
@@ -19,6 +21,7 @@
 @property (nonatomic,strong) UIImageView *imageView;
 @property (nonatomic,strong) UIButton *Button;
 @property (strong, nonatomic) UIDynamicAnimator *animator;
+@property (strong, nonatomic) IBOutlet UIButton *myButton;
 
 @end
 
@@ -66,73 +69,76 @@
 
 - (void)buttonAction:(UIButton *)sender {
     
-    [self startAnimationWithRect:self.imageView.frame ImageView:self.imageView];
+    BKAnimationGoods *start = [[BKAnimationGoods alloc] init];
+    [start startAnimalclickButton:sender fromPoint:CGPointMake(100, 100) toPoint:CGPointMake(SCREEN_WIDTH-80, SCREEN_HEIGHT-80) withImage:[UIImage imageNamed:@"1.jpeg"]];
+//    [start startAnimal:self.view clickButton:_Button toButton:self.myButton withImageView:self.imageView];
+//    [self startAnimationWithRect:self.imageView.frame ImageView:self.imageView];
 }
 
--(void)startAnimationWithRect:(CGRect)rect ImageView:(UIImageView *)imageView
-{
-    if (!_layer) {
-        _layer = [CALayer layer];
-        _layer.contents = (id)imageView.layer.contents;
-        _layer.contentsGravity = kCAGravityResizeAspectFill;
-        _layer.bounds = rect;
-        [_layer setCornerRadius:CGRectGetHeight([_layer bounds]) / 2];
-        _layer.masksToBounds = YES;
-        // 导航64
-        _layer.position = CGPointMake(imageView.center.x, CGRectGetMidY(rect)+64);
-        [self.view.layer addSublayer:_layer];
-        self.path = [UIBezierPath bezierPath];
-        
-         //开始动画的点；
-        [_path moveToPoint:self.imageView.center];
-        
-        [_path addQuadCurveToPoint:_Button.center controlPoint:CGPointMake(SCREEN_WIDTH/2,rect.origin.y-80)];
-    }
-    [self groupAnimation];
-}
+//-(void)startAnimationWithRect:(CGRect)rect ImageView:(UIImageView *)imageView
+//{
+//    if (!_layer) {
+//        _layer = [CALayer layer];
+//        _layer.contents = (id)imageView.layer.contents;
+//        _layer.contentsGravity = kCAGravityResizeAspectFill;
+//        _layer.bounds = rect;
+//        [_layer setCornerRadius:CGRectGetHeight([_layer bounds]) / 2];
+//        _layer.masksToBounds = YES;
+//        // 导航64
+//        _layer.position = CGPointMake(imageView.center.x, CGRectGetMidY(rect)+64);
+//        [self.view.layer addSublayer:_layer];
+//        self.path = [UIBezierPath bezierPath];
+//        
+//         //开始动画的点；
+//        [_path moveToPoint:self.imageView.center];
+//        
+//        [_path addQuadCurveToPoint:_Button.center controlPoint:CGPointMake(SCREEN_WIDTH/2,rect.origin.y-80)];
+//    }
+//    [self groupAnimation];
+//}
 
--(void)groupAnimation
-{
-    //防止动作期间多次点击；
-    _Button.userInteractionEnabled = NO;
-    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-    animation.path = _path.CGPath;
-    animation.rotationMode = kCAAnimationRotateAuto;
-    
-    
-    CABasicAnimation *expandAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    expandAnimation.duration = 0.3f;
-    expandAnimation.fromValue = [NSNumber numberWithFloat:1];
-    expandAnimation.toValue = [NSNumber numberWithFloat:1.0f];
-    expandAnimation.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-    
-    CABasicAnimation *narrowAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    narrowAnimation.beginTime = 0.3;
-    narrowAnimation.fromValue = [NSNumber numberWithFloat:1.0f];
-    narrowAnimation.duration = 1.0f;
-    narrowAnimation.toValue = [NSNumber numberWithFloat:0.3f];
-    
-    narrowAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-    
-    CAAnimationGroup *groups = [CAAnimationGroup animation];
-    groups.animations = @[animation,expandAnimation,narrowAnimation];
-    groups.duration = 1.3f;
-    groups.removedOnCompletion=NO;
-    groups.fillMode=kCAFillModeForwards;
-    groups.delegate = self;
-    [_layer addAnimation:groups forKey:@"group"];
-    
-}
+//-(void)groupAnimation
+//{
+//    //防止动作期间多次点击；
+//    _Button.userInteractionEnabled = NO;
+//    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+//    animation.path = _path.CGPath;
+//    animation.rotationMode = kCAAnimationRotateAuto;
+//    
+//    
+//    CABasicAnimation *expandAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+//    expandAnimation.duration = 0.3f;
+//    expandAnimation.fromValue = [NSNumber numberWithFloat:1];
+//    expandAnimation.toValue = [NSNumber numberWithFloat:1.0f];
+//    expandAnimation.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+//    
+//    CABasicAnimation *narrowAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+//    narrowAnimation.beginTime = 0.3;
+//    narrowAnimation.fromValue = [NSNumber numberWithFloat:1.0f];
+//    narrowAnimation.duration = 1.0f;
+//    narrowAnimation.toValue = [NSNumber numberWithFloat:0.3f];
+//    
+//    narrowAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+//    
+//    CAAnimationGroup *groups = [CAAnimationGroup animation];
+//    groups.animations = @[animation,expandAnimation,narrowAnimation];
+//    groups.duration = 1.3f;
+//    groups.removedOnCompletion=NO;
+//    groups.fillMode=kCAFillModeForwards;
+//    groups.delegate = self;
+//    [_layer addAnimation:groups forKey:@"group"];
+//    
+//}
 
--(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    if (anim == [_layer animationForKey:@"group"]) {
-        [_layer removeFromSuperlayer];
-        _layer = nil;
-       
-        _Button.userInteractionEnabled = YES;
-    }
-}
+//-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+//{
+//    if (anim == [_layer animationForKey:@"group"]) {
+//        [_layer removeFromSuperlayer];
+//        _layer = nil;
+//       
+//        _Button.userInteractionEnabled = YES;
+//    }
+//}
 
 //变换按钮的位置；
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
