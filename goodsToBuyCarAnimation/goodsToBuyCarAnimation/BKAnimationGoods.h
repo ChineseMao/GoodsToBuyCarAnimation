@@ -13,4 +13,6 @@
 
 - (void)startAnimalclickButton:(UIButton *)clickButton fromPoint:(CGPoint )fromPoint toPoint:(CGPoint )toPoint withImage:(UIImage *)image;
 
+@property (nonatomic, strong) UIButton *buyCarButton;
+
 @end

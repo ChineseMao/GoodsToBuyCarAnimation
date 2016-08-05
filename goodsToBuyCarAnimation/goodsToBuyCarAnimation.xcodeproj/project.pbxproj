@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		62F8212A98C6BFB0E4E416E7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F6DBC41FF9F3B4CDDD0FD82 /* libPods.a */; };
-		724ACE721D40C3A2008DD74F /* myView.m in Sources */ = {isa = PBXBuildFile; fileRef = 724ACE711D40C3A2008DD74F /* myView.m */; };
 		724ACE751D40C898008DD74F /* BKAnimationGoods.m in Sources */ = {isa = PBXBuildFile; fileRef = 724ACE741D40C898008DD74F /* BKAnimationGoods.m */; };
 		727623A71D13A90B00DF6A0E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 727623A61D13A90B00DF6A0E /* main.m */; };
 		727623AA1D13A90B00DF6A0E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 727623A91D13A90B00DF6A0E /* AppDelegate.m */; };
@@ -21,8 +20,6 @@
 
 /* Begin PBXFileReference section */
 		3944278ABAE2B62C588E6B52 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		724ACE701D40C3A2008DD74F /* myView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myView.h; sourceTree = "<group>"; };
-		724ACE711D40C3A2008DD74F /* myView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myView.m; sourceTree = "<group>"; };
 		724ACE731D40C898008DD74F /* BKAnimationGoods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKAnimationGoods.h; sourceTree = "<group>"; };
 		724ACE741D40C898008DD74F /* BKAnimationGoods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKAnimationGoods.m; sourceTree = "<group>"; };
 		727623A21D13A90B00DF6A0E /* goodsToBuyCarAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = goodsToBuyCarAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,8 +85,6 @@
 				727623AC1D13A90B00DF6A0E /* ViewController.m */,
 				724ACE731D40C898008DD74F /* BKAnimationGoods.h */,
 				724ACE741D40C898008DD74F /* BKAnimationGoods.m */,
-				724ACE701D40C3A2008DD74F /* myView.h */,
-				724ACE711D40C3A2008DD74F /* myView.m */,
 				727623AE1D13A90B00DF6A0E /* Main.storyboard */,
 				727623B11D13A90B00DF6A0E /* Assets.xcassets */,
 				727623B31D13A90B00DF6A0E /* LaunchScreen.storyboard */,
@@ -240,7 +235,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				724ACE751D40C898008DD74F /* BKAnimationGoods.m in Sources */,
-				724ACE721D40C3A2008DD74F /* myView.m in Sources */,
 				727623AD1D13A90B00DF6A0E /* ViewController.m in Sources */,
 				727623AA1D13A90B00DF6A0E /* AppDelegate.m in Sources */,
 				727623A71D13A90B00DF6A0E /* main.m in Sources */,

@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import <Masonry.h>
-#import "myView.h"
 #import "BKAnimationGoods.h"
 
 //获取屏幕 宽度、高度
@@ -21,7 +20,6 @@
 @property (nonatomic,strong) UIImageView *imageView;
 @property (nonatomic,strong) UIButton *Button;
 @property (strong, nonatomic) UIDynamicAnimator *animator;
-@property (strong, nonatomic) IBOutlet UIButton *myButton;
 
 @end
 
@@ -70,10 +68,9 @@
 - (void)buttonAction:(UIButton *)sender {
     
     BKAnimationGoods *start = [[BKAnimationGoods alloc] init];
+    start.buyCarButton = sender;
     [start startAnimalclickButton:sender fromPoint:CGPointMake(100, 100) toPoint:sender.center withImage:[UIImage imageNamed:@"1.jpeg"]];
     
-//    [start startAnimal:self.view clickButton:_Button toButton:self.myButton withImageView:self.imageView];
-//    [self startAnimationWithRect:self.imageView.frame ImageView:self.imageView];
 }
 
 
@@ -84,7 +81,6 @@
     CGPoint point = [touch locationInView:self.view];
     // 2 创建物理仿真行为(添加仿真元素)-->吸附行为
     UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:self.Button snapToPoint:point];
-    
     // 常用属性
     // 防抖系数  0到1  抖动效果逐渐变弱；
     snap.damping = 0.1f;

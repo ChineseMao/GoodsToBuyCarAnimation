@@ -42,8 +42,8 @@
         _layer.contents = (id)imageView.layer.contents;
         _layer.contentsGravity = kCAGravityResizeAspectFill;
         _layer.bounds = rect;
-        //        [_layer setCornerRadius:CGRectGetHeight([_layer bounds]) / 2];
-        //        _layer.masksToBounds = YES;
+        [_layer setCornerRadius:10];
+        _layer.masksToBounds = YES;
         // 导航64
 //        _layer.position = CGPointMake(100, CGRectGetMidY(rect)+64);
         [self.transView.layer addSublayer:_layer];
@@ -81,7 +81,24 @@
     narrowAnimation.beginTime = 0.3;
     narrowAnimation.fromValue = [NSNumber numberWithFloat:1.0f];
     narrowAnimation.duration = 1.0f;
-    narrowAnimation.toValue = [NSNumber numberWithFloat:0.3f];
+    narrowAnimation.toValue = [NSNumber numberWithFloat:0.1f];
+    
+    if (_buyCarButton) {
+        
+        CABasicAnimation *buyCarAnimation_1 = [CABasicAnimation animationWithKeyPath:@"transform"];
+        buyCarAnimation_1.beginTime =CACurrentMediaTime() + 1.1f;
+        buyCarAnimation_1.autoreverses = YES;
+        buyCarAnimation_1.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.5, 1.5, 1)];
+        buyCarAnimation_1.delegate = self;
+        [buyCarAnimation_1 setTimingFunction:[CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseInEaseOut]];
+        buyCarAnimation_1.removedOnCompletion = YES;
+        buyCarAnimation_1.repeatCount = 1;
+        buyCarAnimation_1.duration = 0.2f;
+        buyCarAnimation_1.delegate = self;
+        [_buyCarButton.layer addAnimation:buyCarAnimation_1 forKey:@"groups_buyCar"];
+        
+    }
+
     
     narrowAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     
@@ -102,6 +119,9 @@
         _layer = nil;
         
         _clickButton.userInteractionEnabled = YES;
+    }
+    if (anim == [_buyCarButton.layer animationForKey:@"groups_buyCar"]) {
+        [_buyCarButton.layer removeFromSuperlayer];
     }
 }
 #pragma mark-获取全屏最上层的Window
