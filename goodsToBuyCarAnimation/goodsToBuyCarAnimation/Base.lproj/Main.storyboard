@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -21,11 +22,19 @@
                                 <rect key="frame" x="277" y="285" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axs-WM-Tqm">
+                                <rect key="frame" x="114" y="427" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="axs-WM-Tqm" secondAttribute="bottom" constant="152" id="L5q-IS-SQa"/>
                             <constraint firstItem="sH2-3S-ASc" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Pfq-6g-sXr"/>
                             <constraint firstItem="sH2-3S-ASc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kBa-ob-OLj"/>
+                            <constraint firstItem="axs-WM-Tqm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="94" id="ova-Sa-GsE"/>
                         </constraints>
                     </view>
                     <connections>

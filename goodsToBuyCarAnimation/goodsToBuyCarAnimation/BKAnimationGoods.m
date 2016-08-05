@@ -64,12 +64,18 @@
     animation.path = _path.CGPath;
     animation.rotationMode = kCAAnimationRotateAuto;
     
+    //旋转动画
+    CABasicAnimation* rotationAnimation =
+    [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];//"z"还可以是“x”“y”，表示沿z轴旋转
+    rotationAnimation.toValue = [NSNumber numberWithFloat:(2 * M_PI) * 10];
+    rotationAnimation.duration = 1.3f;
+    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
     
     CABasicAnimation *expandAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
     expandAnimation.duration = 0.3f;
     expandAnimation.fromValue = [NSNumber numberWithFloat:1];
     expandAnimation.toValue = [NSNumber numberWithFloat:1.0f];
-    expandAnimation.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    expandAnimation.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
     
     CABasicAnimation *narrowAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
     narrowAnimation.beginTime = 0.3;
@@ -80,7 +86,7 @@
     narrowAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     
     CAAnimationGroup *groups = [CAAnimationGroup animation];
-    groups.animations = @[animation,expandAnimation,narrowAnimation];
+    groups.animations = @[animation,expandAnimation,narrowAnimation,rotationAnimation];
     groups.duration = 1.3f;
     groups.removedOnCompletion=NO;
     groups.fillMode=kCAFillModeForwards;
